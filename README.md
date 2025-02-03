@@ -1,6 +1,6 @@
-# My Personal Project
+# Shuheng Gao's Project
 
-## A subtitle
+## Simple Vertical Rhythm Game
 
 A *bulleted* list:
 - item 1
