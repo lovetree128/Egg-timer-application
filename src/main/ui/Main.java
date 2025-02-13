@@ -2,6 +2,10 @@ package ui;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        System.out.println("Welcome to my project!"); 
+        EggTimer myEggTimer = new EggTimer();
+        myEggTimer.addEgg("boiled", 1);
+        myEggTimer.addEgg("boiled", 2);
+        myEggTimer.addEgg("boiled", 3);
+        myEggTimer.startTimer();
     }
 }
