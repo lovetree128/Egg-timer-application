@@ -72,6 +72,16 @@ public class Egg {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: reduce the remaining time of the egg by 1
+    public void eggTimeReduce() {
+        remainingTime -= 1;
+    }
+
+    public boolean isDone() {
+        return remainingTime == 0;
+    }
+
     public String getMethod() {
         return method;
     }
