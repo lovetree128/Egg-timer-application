@@ -20,14 +20,29 @@ public class EggTimer {
 
     }
 
+    public void addEgg(Egg egg) {
+        eggs.add(egg);
+    }
+
+    public List<Egg> getEggs() {
+        return eggs;
+    }
+
     // MODIFIES: this
     // EFFECTS: reduce the remaining time of all eggs by 1
     public void timeReduce() {
-
+        for (Egg egg : eggs) {
+            egg.eggTimeReduce();
+        }
     }
 
     // EFFECTS: checks if all the eggs are cooked
     public boolean isAllDone() {
+        for (Egg egg : eggs) {
+            if (egg.isDone()) {
+                return false;
+            }
+        }
         return true;
     }
 
