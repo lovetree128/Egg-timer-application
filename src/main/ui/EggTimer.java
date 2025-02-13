@@ -16,16 +16,20 @@ public class EggTimer {
 
     // MODIFIES: this
     // EFFECTS: 
-    public void start() {
-
+    public void startTimer() {
+        try {
+            while (!isAllDone()) {
+                display();
+                timeReduce();
+                Thread.sleep(1000);
+            }
+        } catch (InterruptedException e) {}
     }
 
-    public void addEgg(Egg egg) {
-        eggs.add(egg);
-    }
-
-    public List<Egg> getEggs() {
-        return eggs;
+    // EFFECTS: prints the time
+    public void display() {
+        System.out.println(String.join("\t", getEggMethods()));
+        System.out.println(String.join("\t", toMinute()));
     }
 
     // MODIFIES: this
@@ -39,7 +43,7 @@ public class EggTimer {
     // EFFECTS: checks if all the eggs are cooked
     public boolean isAllDone() {
         for (Egg egg : eggs) {
-            if (egg.isDone()) {
+            if (!egg.isDone()) {
                 return false;
             }
         }
@@ -47,12 +51,35 @@ public class EggTimer {
     }
 
     // EFFECTS: transforms seconds to minutes
-    public String toMinute(Egg egg) {
-        int min = egg.getRemainingTime() / 60;
-        int sec = egg.getRemainingTime() % 60;
-        if (sec >= 0 && sec <= 9) {
-            return min + ":" + "0" + sec;
+    public List<String> toMinute() {
+        List<String> eggTimeMinute = new ArrayList<String>();
+        for (Egg egg : eggs) {
+            int min = egg.getRemainingTime() / 60;
+            int sec = egg.getRemainingTime() % 60;
+            if (sec >= 0 && sec <= 9) {
+                eggTimeMinute.add(min + ":" + "0" + sec);
+            } else {
+                eggTimeMinute.add(min + ":" + sec);
+            }
         }
-        return min + ":" + sec;
+        return eggTimeMinute;
+    }
+
+    // EFFECTS: get a list of string with the methods and doneness of each egg
+    public List<String> getEggMethods() {
+        List<String> eggNames = new ArrayList<String>();
+        for (Egg egg : eggs) {
+            eggNames.add(egg.getMethod() + egg.getDoneness());
+        }
+        return eggNames;
+    }
+
+    public void addEgg(String method, int doneness) {
+        Egg egg = new Egg(method, doneness);
+        eggs.add(egg);
+    }
+
+    public List<Egg> getEggs() {
+        return eggs;
     }
 }
