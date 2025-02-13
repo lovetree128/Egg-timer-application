@@ -86,6 +86,19 @@ public class Egg {
         return method;
     }
 
+    public String getDoneness() {
+        switch (doneness) {
+            case 1:
+                return "soft";
+            case 2:
+                return "medium";
+            case 3:
+                return "hard";
+            default:
+                return null;
+        }
+    }
+
     public int getRemainingTime() {
         return remainingTime;
     }
