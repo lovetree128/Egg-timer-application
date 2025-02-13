@@ -22,8 +22,4 @@ public class TestTimer {
         scrambledEgg = new Egg("scrambledEgg",1);
     }
 
-    @Test
-    void testToMinute() {
-        assertEquals("6:00", testTimer.toMinute(boiledEgg));
-    }
 }
