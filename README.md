@@ -24,7 +24,7 @@ Many times when I'm cooking my breakfast, I always can't control the doneness of
 
 ### User Stories
 
-- As a user, I want to be able to choose from different egg cooking methods.
-- As a user, I want to be able to choose the doneness I want for the eggs.
-- As a user, I want to be able to add multiple timers that run at the same time while I'm cooking.
-- As a user, I want to be able to remove a timer from the current running timers.
+- As a user, I want to be able to add multiple eggs to the egg timer.
+- As a user, I want to be able to list and display the eggs' name and their remaining time in the egg timer.
+- As a user, I want to be able to see a remind message when an egg is cooked
+- As a user, I want to be able to hear a remind sound when an egg is cooked
