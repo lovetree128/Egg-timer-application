@@ -98,7 +98,7 @@ public class EggTimer {
             } else {
                 int min = egg.getRemainingTime() / 60;
                 int sec = egg.getRemainingTime() % 60;
-                if (sec >= 0 && sec <= 9) {
+                if (sec <= 9) {
                     eggTimeMinute.add(min + ":" + "0" + sec);
                 } else {
                     eggTimeMinute.add(min + ":" + sec);
