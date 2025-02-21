@@ -45,23 +45,22 @@ public class EggTimer {
             } else {
                 displayDoneness();
                 doneness = input.nextInt();
-                handleCommand(type,doneness);
+                handleCommand(type, doneness);
             }
         }
     }
 
     // EFFECTS: prints the time
     public void display() {
-        System.out.println(String.join("\t", getEggMethods()));
-        System.out.println(String.join("\t", toMinute()));
+        System.out.println(String.join("\n", assembleList()));
     }
 
     public void displayEggType() {
-        System.out.println("\nSelect from:");
-        System.out.println("\tb -> Boiled");
-        System.out.println("\tf -> Fried");
-        System.out.println("\ts -> Scrambled");
-        System.out.println("\tstart -> start the timer");
+        System.out.println("Select from:"
+                + "\n\tb -> Boiled"
+                + "\n\tf -> Fried"
+                + "\n\ts -> Scrambled"
+                + "\n\tstart -> start the timer");
     }
 
     public void displayDoneness() {
@@ -87,6 +86,14 @@ public class EggTimer {
             }
         }
         return true;
+    }
+
+    public List<String> assembleList() {
+        List<String> eggNameList = new ArrayList<String>();
+        for (int i = 0; i < eggs.size(); i++) {
+            eggNameList.add(getEggMethods().get(i) + "\t" + toMinute().get(i));
+        }
+        return eggNameList;
     }
 
     // EFFECTS: transforms seconds to minutes
@@ -117,7 +124,7 @@ public class EggTimer {
         return eggNames;
     }
 
-    public void handleCommand(String command,int doneness) {
+    public void handleCommand(String command, int doneness) {
         switch (command) {
             case "b":
                 addEgg("boiled", doneness);
