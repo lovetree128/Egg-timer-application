@@ -2,6 +2,10 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +16,11 @@ import ui.EggTimer;
 
 public class TestTimer {
     EggTimer testTimer;
+    ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     @BeforeEach
     void runBefore() {
+        System.setOut(new PrintStream(outContent));
         testTimer = new EggTimer();
     }
 
@@ -103,4 +109,44 @@ public class TestTimer {
     void testStartTimer() {
 
     }
+
+    @Test
+    void testDisplayEggType() {
+        testTimer.displayEggType();
+        String expectedOutput = "Select from:" +
+        "\n\tb -> Boiled" +
+        "\n\tf -> Fried" +
+        "\n\ts -> Scrambled" +
+        "\n\tstart -> start the timer"+ System.lineSeparator();
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testDisplayDoneness() {
+        testTimer.displayDoneness();
+        String expectedOutput = "\nSelect from:" + System.lineSeparator()
+        +  "\t1 -> Soft" + System.lineSeparator() +
+        "\t2 -> Medium" + System.lineSeparator() +
+         "\t3 -> Hard" + System.lineSeparator();
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testAssembleList() {
+        List<String> testEggNameList = new ArrayList<String>();
+        testTimer.addEgg("boiled", 1);
+        testEggNameList.add("boiledsoft\t6:00");
+        assertEquals(testEggNameList,testTimer.assembleList());
+    }
+
+    @Test
+    void testDisplay() {
+        testTimer.addEgg("boiled", 1);
+        testTimer.addEgg("boiled", 1);
+        testTimer.display();
+        String expectedOutput = "boiledsoft\t6:00"+"\n"+
+        "boiledsoft\t6:00"+System.lineSeparator();
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
 }
