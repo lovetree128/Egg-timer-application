@@ -33,6 +33,7 @@ public class EggTimer {
         System.out.println("All eggs are cooked!");
     }
 
+    // EFFECTS: takes input from user and display menus
     public void chooseEgg() {
         boolean start = false;
         String type = null;
@@ -55,6 +56,7 @@ public class EggTimer {
         System.out.println(String.join("\n", assembleList()));
     }
 
+    // EFFECTS: prints the type choose menu
     public void displayEggType() {
         System.out.println("Select from:"
                 + "\n\tb -> Boiled"
@@ -63,6 +65,7 @@ public class EggTimer {
                 + "\n\tstart -> start the timer");
     }
 
+    // EFFECTS: prints the doneness choose menu
     public void displayDoneness() {
         System.out.println("\nSelect from:");
         System.out.println("\t1 -> Soft");
@@ -88,6 +91,7 @@ public class EggTimer {
         return true;
     }
 
+    // EFFECRS: assembles the two lists of strings together
     public List<String> assembleList() {
         List<String> eggNameList = new ArrayList<String>();
         for (int i = 0; i < eggs.size(); i++) {
@@ -124,6 +128,7 @@ public class EggTimer {
         return eggNames;
     }
 
+    // EFFECTS: translate the user input and adds egg to eggs list
     public void handleCommand(String command, int doneness) {
         switch (command) {
             case "b":
@@ -138,6 +143,7 @@ public class EggTimer {
         }
     }
 
+    // EFFECTS: adds eggs to eggslist
     public void addEgg(String method, int doneness) {
         Egg egg = new Egg(method, doneness);
         eggs.add(egg);
