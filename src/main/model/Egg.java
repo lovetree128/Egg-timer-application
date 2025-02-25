@@ -1,5 +1,6 @@
 package model;
 
+
 // Represents an egg with user input method of cooking a specified time of cooking.
 public class Egg {
     public static final int BOILED_EGG_SOFT_TIME = 360;
@@ -116,6 +117,28 @@ public class Egg {
         return remainingTime <= 0;
     }
 
+    // EFFECTS: gets the remainingtime of the egg in minutes
+    public String getRemainingTimeInMinute() {
+        String eggTimeMinute;
+        if (isDone()) {
+            eggTimeMinute = (getMethod() + getDonenessInString() + "is cooked!");
+        } else {
+            int min = getRemainingTime() / 60;
+            int sec = getRemainingTime() % 60;
+            if (sec <= 9) {
+                eggTimeMinute = (min + ":" + "0" + sec);
+            } else {
+                eggTimeMinute = (min + ":" + sec);
+            }
+        }
+        return eggTimeMinute;
+    }
+
+    // EFFECTS: gets the name of the egg for display
+    public String getDisplayName() {
+        return getMethod() + " " + getDonenessInString();
+    }
+ 
     // EFFECTS: gets the string version of doneness
     public String getDonenessInString() {
         switch (doneness) {
