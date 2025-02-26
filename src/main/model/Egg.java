@@ -121,7 +121,7 @@ public class Egg {
     public String getRemainingTimeInMinute() {
         String eggTimeMinute;
         if (isDone()) {
-            eggTimeMinute = (getMethod() + getDonenessInString() + "is cooked!");
+            eggTimeMinute = (getDisplayName() + " is cooked!");
         } else {
             int min = getRemainingTime() / 60;
             int sec = getRemainingTime() % 60;
