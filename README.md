@@ -27,4 +27,5 @@ Many times when I'm cooking my breakfast, I always can't control the doneness of
 - As a user, I want to be able to add multiple eggs to the egg timer.
 - As a user, I want to be able to list and display the eggs' name and their remaining time in the egg timer.
 - As a user, I want to be able to see a remind message when an egg is cooked
-- As a user, I want to be able to hear a remind sound when an egg is cooked
+- As a user, I want to be able to add a new timer to the list of timers while the timers are running
+- As a user, I want to be able to stop a timer while the timers are running
