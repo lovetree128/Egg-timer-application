@@ -118,7 +118,7 @@ public class EggTimer {
 
     public void addTimer(String userInput) {
         chooseEgg();
-        eggThreads.get(eggThreads.size()-1).start();
+        eggThreads.get(eggThreads.size() - 1).start();
     }
 
     // EFFECTS: stops the timer or shows the remaining time of the timers
@@ -136,7 +136,7 @@ public class EggTimer {
             for (EggThread eggThread : eggThreads) {
                 if (eggThread.getRunning() && !eggThread.getEgg().isDone()) {
                     System.out.println("The remaining time of " + eggThread.getEgg().getDisplayName() + " is "
-                        + eggThread.getEgg().getRemainingTimeInMinute());
+                            + eggThread.getEgg().getRemainingTimeInMinute());
                 }
             }
             return;
