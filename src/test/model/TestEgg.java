@@ -76,4 +76,13 @@ public class TestEgg {
         assertEquals("hard", boiledHardEgg.getDonenessInString());
         assertNull(buggyEgg.getDonenessInString());
     }
+
+    @Test
+    void testGetRemainingTimeInMinute() {
+        assertEquals("6:00", boiledEgg.getRemainingTimeInMinute());
+        boiledEgg.setRemainingTime(0);
+        assertEquals("boiled soft is cooked!", boiledEgg.getRemainingTimeInMinute());
+        boiledEgg.setRemainingTime(139);
+        assertEquals("2:19", boiledEgg.getRemainingTimeInMinute());
+    }
 }
