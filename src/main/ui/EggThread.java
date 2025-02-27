@@ -2,6 +2,7 @@ package ui;
 
 import model.Egg;
 
+// Creates a thread for an egg to run individually
 public class EggThread extends Thread {
     
     private Egg egg;
@@ -11,6 +12,7 @@ public class EggThread extends Thread {
         this.egg = egg;
     }
 
+    // EFFECTS: runs the individual timer thread
     @Override
     public void run() {
         while (!egg.isDone()) {
@@ -36,6 +38,7 @@ public class EggThread extends Thread {
         this.running = false;
     }
 
+    // EFFECTS: shows the name and the current remaining time of the egg
     public void display() {
         System.out.println(egg.getDisplayName() + "\t" + egg.getRemainingTimeInMinute());;
     }
