@@ -41,26 +41,28 @@ public class EggTimer {
     public void chooseEgg() {
         boolean start = false;
         String type = null;
-        int doneness = 0;
         while (!start) {
             displayEggType();
             type = input.next();
             input.nextLine();
             if (!type.equals("b") && !type.equals("f") && !type.equals("s") && !type.equals("start")) {
+                if (type.equals("q")) {
+                    break;
+                }
                 System.out.println("Please enter a valid egg type or enter start to start the timers");
             } else {
                 if (type.equals("start")) {
                     start = checkEmpty();
                 } else {
                     displayDoneness();
-                    doneness = handleException(type);
+                    handleException(type);
                 }
             }
         }
     }
 
     // EFFECTS: throws error information to the user when input is not number
-    public int handleException(String type) {
+    public void handleException(String type) {
         int doneness = 0;
         try {
             doneness = input.nextInt();
@@ -73,7 +75,6 @@ public class EggTimer {
             System.out.println("Please enter an integer");
             input.nextLine();
         }
-        return doneness;
     }
 
     // EFFECTS: checks if the list of thread is empty and inform user to select an
@@ -102,7 +103,8 @@ public class EggTimer {
                 + "\n\tb -> Boiled"
                 + "\n\tf -> Fried"
                 + "\n\ts -> Scrambled"
-                + "\n\tstart -> start the timer");
+                + "\n\tstart -> start the timer"
+                + "\n\tq -> Quit");
     }
 
     // EFFECTS: prints the doneness choose menu
@@ -150,14 +152,18 @@ public class EggTimer {
                 addTimer(userInput);
             }
         }
-        System.out.println("All eggs are cooked!");
+        System.out.println("All eggs are cooked or the application is stopped by the user");
     }
 
     // MODIFIES: this
     // EFFECTS: add a new egg timer thread to the list of threads
     public void addTimer(String userInput) {
         chooseEgg();
-        eggThreads.get(eggThreads.size() - 1).start();
+        try {
+            eggThreads.get(eggThreads.size() - 1).start();
+        } catch (IllegalThreadStateException e) {
+            System.out.println("Adding stopped by the user");
+        }
     }
 
     // MODIFIES: this
