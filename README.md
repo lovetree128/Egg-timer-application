@@ -29,3 +29,5 @@ Many times when I'm cooking my breakfast, I always can't control the doneness of
 - As a user, I want to be able to see a remind message when an egg is cooked
 - As a user, I want to be able to add a new timer to the list of timers while the timers are running
 - As a user, I want to be able to stop a timer while the timers are running
+- As a user, I want to be able to save my current egg timers to file
+- As a user, I want to be able to load my pre-created egg timer list from file
