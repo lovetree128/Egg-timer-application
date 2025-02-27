@@ -1,10 +1,13 @@
 package ui;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import model.Egg;
 
+// Adds the threads to a list. Run them together and handle user input to 
+// determine the type of the egg and add or stop the specific egg while running
 public class EggTimer {
     private List<EggThread> eggThreads;
     private Scanner input;
@@ -33,6 +36,7 @@ public class EggTimer {
         userInputThread.start();
     }
 
+    // MODIFIES: this
     // EFFECTS: takes input from user and display menus
     public void chooseEgg() {
         boolean start = false;
@@ -42,14 +46,44 @@ public class EggTimer {
             displayEggType();
             type = input.next();
             input.nextLine();
-            if (type.equals("start")) {
-                start = true;
+            if (!type.equals("b") && !type.equals("f") && !type.equals("s") && !type.equals("start")) {
+                System.out.println("Please enter a valid egg type or enter start to start the timers");
             } else {
-                displayDoneness();
-                doneness = input.nextInt();
-                handleCommand(type, doneness);
+                if (type.equals("start")) {
+                    start = checkEmpty();
+                } else {
+                    displayDoneness();
+                    doneness = handleException(type);
+                }
             }
         }
+    }
+
+    // EFFECTS: throws error information to the user when input is not number
+    public int handleException(String type) {
+        int doneness = 0;
+        try {
+            doneness = input.nextInt();
+            if (doneness >= 4 | doneness < 1) {
+                System.out.println("Please enter a valid number (1-3)");
+            } else {
+                handleCommand(type, doneness);
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Please enter an integer");
+            input.nextLine();
+        }
+        return doneness;
+    }
+
+    // EFFECTS: checks if the list of thread is empty and inform user to select an
+    // egg
+    public boolean checkEmpty() {
+        if (eggThreads.isEmpty()) {
+            System.out.println("Please select an egg before start");
+            return false;
+        }
+        return true;
     }
 
     // EFFECTS: checks if all the eggs are cooked
@@ -79,6 +113,7 @@ public class EggTimer {
         System.out.println("\t3 -> Hard");
     }
 
+    // MODIFIES: this
     // EFFECTS: translate the user input and adds egg to eggs list
     public void handleCommand(String command, int doneness) {
         switch (command) {
@@ -94,12 +129,14 @@ public class EggTimer {
         }
     }
 
+    // MODIFIES: this
     // EFFECTS: adds eggs to eggslist
     public void addEgg(String method, int doneness) {
         Egg egg = new Egg(method, doneness);
         eggThreads.add(new EggThread(egg));
     }
 
+    // MODIFIES: this
     // EFFECTS: handles the user input while the egg threads are running
     public void handleRunningInput() {
         while (!isAllDone()) {
@@ -116,11 +153,14 @@ public class EggTimer {
         System.out.println("All eggs are cooked!");
     }
 
+    // MODIFIES: this
+    // EFFECTS: add a new egg timer thread to the list of threads
     public void addTimer(String userInput) {
         chooseEgg();
         eggThreads.get(eggThreads.size() - 1).start();
     }
 
+    // MODIFIES: this
     // EFFECTS: stops the timer or shows the remaining time of the timers
     public void stopAndShow(String userInput) {
         if (!userInput.equals("show time")) {
