@@ -31,7 +31,7 @@ public class TestJsonWriter {
             assertEquals(readEggs.get(0).getDoneness(), eggs.get(0).getDoneness());
             assertEquals(readEggs.get(0).getRemainingTime(), eggs.get(0).getRemainingTime());
         } catch (IOException e) {
-            // No fail
+            fail();
         }
     }
 
@@ -63,7 +63,7 @@ public class TestJsonWriter {
             assertEquals(eggs, readEggs);
             readEggs = reader.read();
         } catch (Exception e) {
-            // No fail
+            fail();
         }
     }
 }
