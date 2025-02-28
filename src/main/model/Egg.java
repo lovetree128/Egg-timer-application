@@ -1,8 +1,11 @@
 package model;
 
+import org.json.JSONObject;
+
+import persistence.Writable;
 
 // Represents an egg with user input method of cooking a specified time of cooking.
-public class Egg {
+public class Egg implements Writable {
     public static final int BOILED_EGG_SOFT_TIME = 360;
     public static final int BOILED_EGG_MEDIUM_TIME = 480;
     public static final int BOILED_EGG_HARD_TIME = 600;
@@ -171,5 +174,14 @@ public class Egg {
 
     public void setRemainingTime(int time) {
         remainingTime = time;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Method", method);
+        json.put("Doneness", doneness);
+        json.put("Remaining time", remainingTime);
+        return json;
     }
 }
