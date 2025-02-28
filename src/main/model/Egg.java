@@ -176,6 +176,7 @@ public class Egg implements Writable {
         remainingTime = time;
     }
 
+    // EFFECTS: transforms the egg object to json object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
