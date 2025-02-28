@@ -1,17 +1,17 @@
 [
     {
-        "Doneness": 3,
-        "Remaining time": 584,
+        "Doneness": 2,
+        "Remaining time": 477,
         "Method": "boiled"
     },
     {
-        "Doneness": 2,
-        "Remaining time": 224,
+        "Doneness": 1,
+        "Remaining time": 177,
         "Method": "scrambled"
     },
     {
         "Doneness": 3,
-        "Remaining time": 284,
-        "Method": "scrambled"
+        "Remaining time": 237,
+        "Method": "fried"
     }
 ]

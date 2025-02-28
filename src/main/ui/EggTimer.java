@@ -54,6 +54,7 @@ public class EggTimer {
             if (!type.equals("b") && !type.equals("f") && !type.equals("s") && !type.equals("start")
                     && !type.equals("l")) {
                 if (type.equals("q")) {
+                    eggThreads.clear();
                     break;
                 }
                 System.out.println("Please enter a valid egg type or enter start to start the timers");
