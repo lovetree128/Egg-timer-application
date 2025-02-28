@@ -1,0 +1,17 @@
+[
+    {
+        "Doneness": 3,
+        "Remaining time": 584,
+        "Method": "boiled"
+    },
+    {
+        "Doneness": 2,
+        "Remaining time": 224,
+        "Method": "scrambled"
+    },
+    {
+        "Doneness": 3,
+        "Remaining time": 284,
+        "Method": "scrambled"
+    }
+]
