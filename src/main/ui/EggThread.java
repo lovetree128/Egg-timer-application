@@ -53,7 +53,7 @@ public class EggThread extends Thread {
     // MODIFIES: this
     // EFFECTS: restart the timer
     public void restartTimer() {
-        
+        egg.setRemainingTime(originalTime);
     }
 
     public Egg getEgg() {
