@@ -7,6 +7,7 @@ public class EggThread extends Thread {
     
     private Egg egg;
     private Boolean running = true;
+    private boolean start = false;
 
     public EggThread(Egg egg) {
         this.egg = egg;
@@ -15,6 +16,7 @@ public class EggThread extends Thread {
     // EFFECTS: runs the individual timer thread
     @Override
     public void run() {
+        start = true;
         while (!egg.isDone()) {
             try {
                 if (!running) {
@@ -49,6 +51,10 @@ public class EggThread extends Thread {
 
     public Boolean getRunning() {
         return running;
+    }
+
+    public boolean getStart() {
+        return start;
     }
 
 }
