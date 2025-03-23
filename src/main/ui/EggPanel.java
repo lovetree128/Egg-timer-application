@@ -13,13 +13,22 @@ public class EggPanel extends JPanel {
 
     // EFFECTS: constructs a frame to display timer
     public EggPanel(EggThread eggThread) {
-
+        this.eggThread = eggThread;
+        timeLabel = new JLabel(getEggTimeText());
+        timerFrame = new JFrame(eggThread.getEgg().getDisplayName());
+        add(timeLabel);
+        new Timer(1000, e -> updateTimeLabel()).start();
+        timerFrame.setSize(200,200);
+        timerFrame.add(this);
+        timerFrame.setVisible(true);
     }
 
     // MODIFIES: this
     // EFFECTS: update the displaying time according to the thread.
     private void updateTimeLabel() {
-
+        timeLabel.setText(getEggTimeText());
+        revalidate();
+        repaint();
     }
 
     // EFFECTS: get the display text for timer
