@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -11,11 +13,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.Egg;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 // Represents the main frame of the GUI.
 public class EggUI extends JFrame {
+    private static final String FILE_LOCATION = "./data/eggs.json";
     private JPanel buttonPanel;
     private List<EggThread> eggThreads;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: constructs a frame with two panels.
     public EggUI() {
@@ -107,6 +114,17 @@ public class EggUI extends JFrame {
                 EggPanel panel = new EggPanel(eggThread);
             }
         }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: reads the timers from the file
+    public void readTimer() {
+
+    }
+
+    // EFFECTS: saves the egg timers to file
+    public void saveTimer() {
+
     }
 
     public static void main(String[] args) {
