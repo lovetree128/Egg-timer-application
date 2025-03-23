@@ -75,7 +75,9 @@ public class EggPanel extends JPanel {
 
     // EFFECTS: displays picture of corresponding egg
     public void displayPicture() {
-
+        ImageIcon icon = new ImageIcon("./data/" + eggThread.getEgg().getMethod() + ".jpg");
+        JLabel picturLabel = new JLabel(icon);
+        add(picturLabel);
     }   
 
     public EggThread getEggThread() {
