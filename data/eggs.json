@@ -1,17 +1,42 @@
 [
     {
-        "Doneness": 2,
-        "Remaining time": 464,
+        "Doneness": 1,
+        "Remaining time": 334,
         "Method": "boiled"
     },
     {
         "Doneness": 1,
-        "Remaining time": 164,
-        "Method": "scrambled"
+        "Remaining time": 96,
+        "Method": "fried"
     },
     {
         "Doneness": 3,
-        "Remaining time": 224,
+        "Remaining time": 218,
         "Method": "fried"
+    },
+    {
+        "Doneness": 2,
+        "Remaining time": 220,
+        "Method": "scrambled"
+    },
+    {
+        "Doneness": 1,
+        "Remaining time": 327,
+        "Method": "boiled"
+    },
+    {
+        "Doneness": 1,
+        "Remaining time": 89,
+        "Method": "fried"
+    },
+    {
+        "Doneness": 3,
+        "Remaining time": 211,
+        "Method": "fried"
+    },
+    {
+        "Doneness": 2,
+        "Remaining time": 213,
+        "Method": "scrambled"
     }
 ]
