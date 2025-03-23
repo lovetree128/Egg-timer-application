@@ -3,12 +3,12 @@ package ui;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -34,8 +34,9 @@ public class EggUI extends JFrame {
         buttonPanel = new JPanel();
         eggThreads = new ArrayList<>();
         eggPanels = new ArrayList<>();
-        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        buttonPanel.setLayout(new GridLayout(0, 1));
         setSize(600, 800);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         chooseEggButton();
         readButton();
