@@ -1,5 +1,7 @@
 package ui;
 
+import java.awt.Toolkit;
+
 import model.Egg;
 
 // Creates a thread for an egg to run individually
@@ -31,6 +33,7 @@ public class EggThread extends Thread {
         }
         if (egg.isDone()) {
             System.out.println(egg.getDisplayName() + " " + "is done");
+            Toolkit.getDefaultToolkit().beep();
         }
     }
 
