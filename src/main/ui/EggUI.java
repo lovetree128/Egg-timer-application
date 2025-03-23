@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.Egg;
@@ -34,6 +36,7 @@ public class EggUI extends JFrame {
         setVisible(true);
         chooseEggButton();
         readButton();
+        saveButton();
         add(buttonPanel);
     }
 
@@ -142,9 +145,43 @@ public class EggUI extends JFrame {
         }
     }
 
+    // EFFECTS: creates a save button
+    public void saveButton() {
+        JFrame warningFrame = new JFrame();
+        warningFrame.setSize(400, 400);
+        warningFrame.setLocationRelativeTo(this);
+        JLabel warningText = new JLabel("No eggs to save, add some eggs first");
+        warningFrame.add(warningText);
+        JButton eggButton = new JButton("Save eggs from file");
+        eggButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (eggThreads.isEmpty()) {
+                    warningFrame.setVisible(true);
+                } else {
+                    saveTimer();
+                }
+            }
+
+        });
+        buttonPanel.add(eggButton);
+    }
+
     // EFFECTS: saves the egg timers to file
     public void saveTimer() {
-        
+        List<Egg> eggs = new ArrayList<>();
+        for (EggThread eggThread : eggThreads) {
+            eggs.add(eggThread.getEgg());
+            eggThread.stopThread();
+        }
+        try {
+            jsonWriter.open();
+            jsonWriter.write(eggs);
+            jsonWriter.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + FILE_LOCATION);
+        }
     }
 
     // EFFECTS: start the threads in the list of thread
