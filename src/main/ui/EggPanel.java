@@ -1,6 +1,5 @@
 package ui;
 
-import java.awt.Desktop.Action;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -27,6 +26,7 @@ public class EggPanel extends JPanel {
         timerFrame.add(this);
         timerFrame.setVisible(true);
         closeButton();
+        restartButton();
     }
 
     // MODIFIES: this
@@ -56,7 +56,14 @@ public class EggPanel extends JPanel {
 
     // EFFECTS: creates a button to restart the timer
     public void restartButton() {
-
+        JButton restartButton = new JButton("Restart");
+        restartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                eggThread.restartTimer();
+            }
+        });
+        add(restartButton);
     }
 
     // EFFECTS: get the display text for timer
