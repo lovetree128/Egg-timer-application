@@ -3,6 +3,7 @@ package ui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,11 +23,12 @@ public class EggPanel extends JPanel {
         timerFrame = new JFrame(eggThread.getEgg().getDisplayName());
         add(timeLabel);
         new Timer(1, e -> updateTimeLabel()).start();
-        timerFrame.setSize(400,200);
+        timerFrame.setSize(500,400);
         timerFrame.add(this);
         timerFrame.setVisible(true);
         closeButton();
         restartButton();
+        displayPicture();
     }
 
     // MODIFIES: this
@@ -70,6 +72,11 @@ public class EggPanel extends JPanel {
     private String getEggTimeText() {
         return eggThread.getEgg().getRemainingTimeInMinute();
     }
+
+    // EFFECTS: displays picture of corresponding egg
+    public void displayPicture() {
+
+    }   
 
     public EggThread getEggThread() {
         return eggThread;
