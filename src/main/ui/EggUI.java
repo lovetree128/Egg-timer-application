@@ -2,6 +2,7 @@ package ui;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -24,6 +25,7 @@ public class EggUI extends JFrame {
     private List<EggThread> eggThreads;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
+    private List<EggPanel> eggPanels;
 
     // EFFECTS: constructs a frame with two panels.
     public EggUI() {
@@ -31,12 +33,14 @@ public class EggUI extends JFrame {
         jsonWriter = new JsonWriter(FILE_LOCATION);
         buttonPanel = new JPanel();
         eggThreads = new ArrayList<>();
+        eggPanels = new ArrayList<>();
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         setSize(600, 800);
         setVisible(true);
         chooseEggButton();
         readButton();
         saveButton();
+        highlightByType();
         add(buttonPanel);
     }
 
@@ -190,8 +194,24 @@ public class EggUI extends JFrame {
             if (!eggThread.getStart()) {
                 eggThread.start();
                 EggPanel panel = new EggPanel(eggThread);
+                eggPanels.add(panel);
             }
         }
+    }
+
+    // EFFECTS: highlights the timers by type
+    public void highlightByType() {
+
+    }
+
+    // EFFECTS: creates a new frame and three buttons for highlighting
+    public void highlightByTypeButton() {
+
+    }
+
+    // EFFECTS: highlight the chosen timers
+    public void setToRed(String type) {
+
     }
 
     public static void main(String[] args) {
