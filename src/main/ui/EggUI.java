@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.BoxLayout;
@@ -26,12 +25,15 @@ public class EggUI extends JFrame {
 
     // EFFECTS: constructs a frame with two panels.
     public EggUI() {
+        jsonReader = new JsonReader(FILE_LOCATION);
+        jsonWriter = new JsonWriter(FILE_LOCATION);
         buttonPanel = new JPanel();
         eggThreads = new ArrayList<>();
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         setSize(600, 800);
         setVisible(true);
         chooseEggButton();
+        readButton();
         add(buttonPanel);
     }
 
@@ -108,23 +110,51 @@ public class EggUI extends JFrame {
                 eggThreads.add(new EggThread(new Egg(label, 3)));
                 break;
         }
+        startTimer();
+    }
+
+    // EFFECTS: creates a button for reading the timers from the file
+    public void readButton() {
+        JButton eggButton = new JButton("Load eggs from file");
+        eggButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                readTimer();
+            }
+
+        });
+        buttonPanel.add(eggButton);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: reads the timers from the file
+    public void readTimer() {
+        List<Egg> eggs = new ArrayList<>();
+        try {
+            eggs = jsonReader.read();
+            for (Egg egg : eggs) {
+                eggThreads.add(new EggThread(egg));
+                startTimer();
+            }
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + FILE_LOCATION);
+        }
+    }
+
+    // EFFECTS: saves the egg timers to file
+    public void saveTimer() {
+        
+    }
+
+    // EFFECTS: start the threads in the list of thread
+    public void startTimer() {
         for (EggThread eggThread : eggThreads) {
             if (!eggThread.getStart()) {
                 eggThread.start();
                 EggPanel panel = new EggPanel(eggThread);
             }
         }
-    }
-
-    // MODIFIES: this
-    // EFFECTS: reads the timers from the file
-    public void readTimer() {
-
-    }
-
-    // EFFECTS: saves the egg timers to file
-    public void saveTimer() {
-
     }
 
     public static void main(String[] args) {
