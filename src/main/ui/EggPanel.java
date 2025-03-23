@@ -55,4 +55,8 @@ public class EggPanel extends JPanel {
     private String getEggTimeText() {
         return eggThread.getEgg().getRemainingTimeInMinute();
     }
+
+    public EggThread getEggThread() {
+        return eggThread;
+    }
 }

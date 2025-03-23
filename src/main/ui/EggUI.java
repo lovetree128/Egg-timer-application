@@ -201,17 +201,48 @@ public class EggUI extends JFrame {
 
     // EFFECTS: highlights the timers by type
     public void highlightByType() {
+        JButton eggButton = new JButton("Highlight timers by type");
+        eggButton.addActionListener(new ActionListener() {
 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                highlightByTypeButton();
+            }
+
+        });
+        buttonPanel.add(eggButton);
     }
 
     // EFFECTS: creates a new frame and three buttons for highlighting
     public void highlightByTypeButton() {
-
+        JFrame warningFrame = new JFrame();
+        warningFrame.setSize(400, 400);
+        warningFrame.setLocationRelativeTo(this);
+        JPanel panel = new JPanel();
+        List<String> buttonLabels = List.of("boiled", "fried", "scrambled");
+        for (String type : buttonLabels) {
+            JButton button = new JButton(type);
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    setToRed(type);
+                }
+            });
+            panel.add(button);
+        }
+        warningFrame.add(panel);
+        warningFrame.setVisible(true);
     }
 
     // EFFECTS: highlight the chosen timers
     public void setToRed(String type) {
-
+        for (EggPanel eggPanel : eggPanels) {
+            if (eggPanel.getEggThread().getEgg().getMethod().equals(type)) {
+                eggPanel.setBackground(Color.RED);
+            } else {
+                eggPanel.setBackground(Color.WHITE);
+            }
+        }
     }
 
     public static void main(String[] args) {
