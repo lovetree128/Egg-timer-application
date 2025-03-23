@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.Desktop.Action;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -30,7 +31,7 @@ public class EggPanel extends JPanel {
 
     // MODIFIES: this
     // EFFECTS: update the displaying time according to the thread.
-    private void updateTimeLabel() {
+    public void updateTimeLabel() {
         if (!eggThread.getRunning()) {
             timerFrame.dispose();
         }
@@ -39,7 +40,9 @@ public class EggPanel extends JPanel {
         repaint();
     }
 
-    private void closeButton() {
+    // MODIFIES: this
+    // EFFECTS: creates a button to close the window
+    public void closeButton() {
         JButton closeButton = new JButton("Close");
         closeButton.addActionListener(new ActionListener() {
             @Override
@@ -49,6 +52,11 @@ public class EggPanel extends JPanel {
             }
         });
         add(closeButton);
+    }
+
+    // EFFECTS: creates a button to restart the timer
+    public void restartButton() {
+
     }
 
     // EFFECTS: get the display text for timer
