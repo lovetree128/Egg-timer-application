@@ -10,9 +10,11 @@ public class EggThread extends Thread {
     private Egg egg;
     private Boolean running = true;
     private boolean start = false;
+    private int originalTime;
 
     public EggThread(Egg egg) {
         this.egg = egg;
+        originalTime = egg.getRemainingTime();
     }
 
     // EFFECTS: runs the individual timer thread
@@ -46,6 +48,12 @@ public class EggThread extends Thread {
     // EFFECTS: shows the name and the current remaining time of the egg
     public void display() {
         System.out.println(egg.getDisplayName() + "\t" + egg.getRemainingTimeInMinute());;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: restart the timer
+    public void restartTimer() {
+        
     }
 
     public Egg getEgg() {
