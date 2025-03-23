@@ -235,6 +235,7 @@ public class EggUI extends JFrame {
         warningFrame.setVisible(true);
     }
 
+    // MODIFIES: this
     // EFFECTS: highlight the chosen timers
     public void setToRed(String type) {
         for (EggPanel eggPanel : eggPanels) {
@@ -246,6 +247,7 @@ public class EggUI extends JFrame {
         }
     }
 
+    // start the GUI
     public static void main(String[] args) {
         EggUI ui = new EggUI();
     }
