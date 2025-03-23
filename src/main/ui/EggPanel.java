@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -36,6 +37,9 @@ public class EggPanel extends JPanel {
     public void updateTimeLabel() {
         if (!eggThread.getRunning()) {
             timerFrame.dispose();
+        }
+        if (eggThread.getEgg().isDone()) {
+            setBackground(Color.GREEN);
         }
         timeLabel.setText(getEggTimeText());
         revalidate();
